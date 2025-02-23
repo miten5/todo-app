@@ -1,5 +1,6 @@
 package com.todoapp.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,14 +25,19 @@ public class Todo {
     private String description;
 
     @Column(name = "reminder_at")
+    @JsonFormat(pattern="dd-MM-yyyy HH:mm:ss")
     private Date reminderAt;
 
     @Column(name = "due_at")
+    @JsonFormat(pattern="dd-MM-yyyy HH:mm:ss")
     private Date dueAt;
 
     private Integer priority;
 
+    private Boolean completed = false;
+
     @CreationTimestamp
     @Column(updatable = false, name = "added_at")
+    @JsonFormat(pattern="dd-MM-yyyy HH:mm:ss")
     private Date addedAt;
 }
